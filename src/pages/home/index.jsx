@@ -5,7 +5,9 @@ function HomePage() {
   return (
     <div>
       <Header />
-      <Carousel />
+      <Carousel numberOfSlide={1} category={"Trending"} />
+      <Carousel numberOfSlide={6} category={"Horror"} />
+      <Carousel numberOfSlide={6} category={"Comedy"} />
     </div>
   );
 }

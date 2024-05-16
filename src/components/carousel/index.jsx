@@ -9,11 +9,36 @@ import "./index.scss";
 
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
-export default function Carousel() {
+// Props
+//  numberOfSlide
+
+// Carousel => numberOfSlide = 1 => hiển thị 1 thằng
+// Carousel => numberOfSlide = 6 => hiển thị 6 thằng
+
+export default function Carousel({ numberOfSlide, category }) {
+  const [movies, setMovies] = useState([]);
+
+  const fetchMovies = async () => {
+    const response = await axios.get(
+      "https://662b9b40de35f91de158d81b.mockapi.io/Movie"
+    );
+
+    console.log(response.data);
+    setMovies(response.data);
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
   return (
     <>
       <Swiper
+        slidesPerView={numberOfSlide}
+        spaceBetween={10}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
@@ -22,24 +47,15 @@ export default function Carousel() {
         modules={[Pagination, Autoplay]}
         className="carousel"
       >
-        <SwiperSlide>
-          <img
-            src="https://image.tmdb.org/t/p/original/qsnXwGS7KBbX4JLqHvICngtR8qg.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://image.tmdb.org/t/p/original/foGkPxpw9h8zln81j63mix5B7m8.jpg"
-            alt=""
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://image.tmdb.org/t/p/original/2ZNFu0hkSVtAI6LRWGIlCPNd1Tj.jpg"
-            alt=""
-          />
-        </SwiperSlide>
+        {/* movie => SwiperSlide*/}
+        {/* cứ mỗi movie trong movies => SwiperSlide*/}
+        {movies
+          .filter((movie) => movie.category === category)
+          .map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <img src={movie.poster_path} alt="" />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );
