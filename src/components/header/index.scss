@@ -2,15 +2,25 @@
   background-color: rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: space-between;
+<<<<<<< HEAD
   padding: 10px 400px;
   align-items: center;
+=======
+  align-items: center;
+  padding: 10px 350px;
+  backdrop-filter: blur(4.5px);
+
+>>>>>>> 360b243975187a587175244ce0741e528f3312c7
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 10;
+<<<<<<< HEAD
   backdrop-filter: blur(3.5px);
 
+=======
+>>>>>>> 360b243975187a587175244ce0741e528f3312c7
   &__nav {
     ul {
       display: flex;
@@ -19,6 +29,10 @@
 
       li {
         color: #fff;
+<<<<<<< HEAD
+=======
+        font-size: 18px;
+>>>>>>> 360b243975187a587175244ce0741e528f3312c7
         a {
           text-decoration: none;
           color: #fff;
